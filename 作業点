@@ -1,0 +1,510 @@
+11/01
+ユーザ：71583683
+パース：s123456
+
+ユーザ：71593838
+パース：s123456
+
+
+\\jp.hitachi-systems.com\share2\700RH
+\\jp.hitachi-systems.com\share2\BH41\h2s_public\案件\17K-007-(三井倉庫)荷捌
+//ファイルサーバ
+\\golbalxxxxxx
+
+10.246.83.225:8080
+http://localhost:8080/CS_IMP_Web_Client/views/login/login.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/menu/menu.html
+
+
+
+http://localhost:8080/CS_IMP_Web_Client/views/cutrntehai/cutrntehai.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/haisya/haisya.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/haisyajissekirkn/haisyajissekirkn.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/jobreg/jobreg.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/systemerror/systemerror.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/tutrntehai/tutrntehai.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/syoruiKanren/jobreg.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/dairyreg/jobreg.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/cutrntehai/jobreg.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/tutrntehai/jobreg.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/dairy/dairy.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/dairysel/jobreg.html
+
+
+http://localhost:8080/CS_IMP_Web_Client/views/information/information.html
+
+
+11/05
+//server.xml
+<Context docBase="D:/projects/CS_IMP_Web_Client" path="/CS_IMP_Web_Client" reloadable="true" />
+C:\Pleiades\mitsui-soko-server\tomcat\7
+C:\Pleiades\mitsui-soko-server\eclipse
+D:\projects\CS_IMP_Web_Client\static\js\menu\menu.js
+
+//git命令
+git status
+git status | grep -c ****
+git commit -m "#menu"
+git checkout static/js/login/login.js
+git push origin develop
+vim ~/.bashrc
+source ~/.bashrc
+
+gst
+gaa
+gcmsg
+ggl
+ggp
+
+
+alias gga='git add .'
+alias gcmsg='git commit -m '
+alias ggl='git pull origin develop'
+alias ggp='git push origin develop'
+alias gst='git status'
+
+
+11/06
+dialog()方法的属性?置
+1.dialog(options)，options 
+placeholderを使えば、入力欄に初期表示する内容を指定することができます。
+
+
+11/07
+
+
+11/08
+
+syoruiKanren
+2、serviceservice 是server下一个集合，service包含多个接收请求的connector并有一个处理所有连接的容器container3、connectorconnector 作用是监听客户端请求，并将请求封装提交container处理，
+然后将处理结果返回客户端tomcat有两个典型的connector，一个用来监听浏览器的http，另一个是用来监听webserviceCoyote Http/1.1 Connector 在端口8080处侦听来自客户browser的http请求Coyote AJP/1.3 Connector
+ 在端口8009处侦听来自其它WebServer(Apache)的servlet/jsp代理请求
+
+3、connectorconnector 作用是监听客户端请求，并将请求封装提交container处理，然后将处理结果返回客户端tomcat有两个典型的connector，一个用来监听浏览器的http，
+另一个是用来监听webserviceCoyote Http/1.1 Connector 在端口8080处侦听来自客户browser的http请求Coyote AJP/1.3 Connector 在端口8009处侦听来自其它WebServer(Apache)的servlet/jsp代理请求
+
+4.2 Host代表一个Virtual Host，虚拟主机，每个虚拟主机和某个网络域名Domain Name相匹配每个虚拟主机下都可以部署(deploy)一个或者多个Web App，每个Web App对应于一个Context，
+有一个Context path。当Host获得一个请求时，将把该请求匹配到某个Context上，然后把该请求交给该Context来处理。匹配的方法是“最长匹配”，所以一个path==""的Context将成为该Host的默认Context。
+所有无法和其它Context的路径名匹配的请求都将最终和该默认Context匹配。
+
+
+3 Context一个Context对应于一个Web Application，一个Web Application由一个或者多个Servlet组成。Context在创建的时候将根据配置文件WEBAPP_HOME/WEB-INF/web.xml载入Servlet类。当Context获得请求时，
+将在自己的映射表(mapping table)中寻找相匹配的Servlet类，如果找到，则执行该类，获得请求的回应，并返回。
+
+EasyAutocomplete是一个高度可定制的jQuery自动完成插件，具有所有常用的功能。 它支持JSON，XML和纯文本格式的本地和远程数据集。它还支持回调处理程序以及一些默认样式
+
+
+原生的JS
+
+jQuery源码分析系列
+https://www.cnblogs.com/aaronjs/p/3279314.html
+
+
+
+11/11
+decodeURIComponent("XXXXX");
+global\71593838
+
+\\jp.hitachi-systems.com\share2\BH41\h2s_public\案件\17K-007-(三井倉庫)荷捌\102
+
+
+11/12
+原生js
+jquery封装交互方法
+
+完整的 key press 过程分为两个部分：1. 按键被按下；2. 按键被松开。
+
+Grid 布局
+布局是由一个网格容器和多个单元格组成。最外层且最大的矩形作为整个布局的载体既网格容器；小一点的矩形为单元格。
+
+
+11/13
+//github
+https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md
+Git工作流的过程
+首先, 每个开发者可以有属于自己的整个工程的本地拷贝,隔离的环境让各个开发者的工作和项目的其他部分修改独立开来 —— 即自由地提交到自己的本地仓库，先完全忽略上游的开发，直到方便的时候再把修改反馈上去。
+其次，Git提供了强壮的分支和合并模型。不像SVN，Git的分支设计成可以做为一种用来在仓库之间集成代码和分享修改的『失败安全』的机制。
+
+
+$("#key").keydown(function(e){
+        $(this).val(e.keyCode);
+        return false;
+ });
+ 
+ 
+11/14
+
+http://10.246.83.225:8080/cs/Cs.html
+
+file:///C:/pleiades/eclipse-mitsui-soko-client/eclipse/workspace/git/CS_IMP_Client/bin-debug/Cs.html
+
+http://localhost:8080/CS_IMP_Web_Client/views/login/login.html
+
+http://10.216.243.120:8080/gitbucket/signin
+
+git 初期設定
+git init
+
+git remote add origin  http://10.216.243.120:8080/gitbucket/git/MITSUI_SOKO/CS_IMP_Web_Client.git
+
+git remote -v
+
+git config --global user.name ""
+
+git clone -B develop
+
+git pull origin develop
+
+git status
+
+
+//trで指定td取得
+$(this).find("td[class="XX"]");
+//trで指定td取得
+$(this).children("td")[0].attr("id");
+//tdによる指定tr取得
+$(this).parent()
+$(this).parent().css("background", "#ffd0ff")
+
+メソッド対象の要素
+parents([exp])先祖要素
+parent([exp])親要素
+prev([exp])前の要素（兄要素）
+prevAll([exp])全ての兄要素
+next([exp])次の要素（弟要素）
+nextAll([exp])全ての弟要素
+siblings([exp])全ての兄弟要素
+children([exp])子要素（孫要素は対象外）
+
+
+11/15
+slice是指定在一个数组中的元素创建一个新的数组，即原数组不会变
+
+
+splice是JS中数组功能最强大的方法，它能够实现对数组元素的删除、插入、替换操作，返回值为被操作的值。
+
+
+parent([selector]) : 1個上の階層の要素を取得
+closest(selector) : セレクタに合致する、直近の階層の要素を取得
+parents([selector])　: 上の階層の全ての要素を取得
+
+https://programmercollege.jp/column
+
+input.closest("tr").index()
+!important
+
+
+11/18
+git add views/dairyreg/dairyreg.html
+ 
+git restore --staged views/dairyreg/jobreg.js
+ 
+position: fixed;
+    top: 0px;
+
+11/19
+
+inputValue.replace(/[^0123456789]/g, "")
+
+jquery.resizableColumns.js
+
+
+11/20
+
+
+tianhui.zhang.fu@hitachi-systems.com
+
+文字列.slice(開始位置 [,終了位置] )
+文字列.substring(開始位置 , 終了位置)
+文字列.substr(開始位置 [,切り出す長さ] )
+
+$("#changeFlg").attr("class") == "button-init" ? 0 : 1
+$("#stFlag button[class='button-checked'").val()
+
+
+11/21
+
+
+
+
+.callback
+
+
+
+11/22
+ ECMAScript 6 简称 ES6，是 JavaScript 语言的下一代标准
+，let定义的变量不会被变量提升，const定义的变量不能被修改。
+函数的快捷写法。不需要function关键字来创建函数，省略return关键字，继承当前上下文的this关键字。
+
+
+
+
+11/25
+选择器+遍历
+$('div').each(function (i){
+   i : 就是索引值
+   this : 表示获取遍历每一个dom对象
+});
+2、选择器+遍历
+$('#testId').each(function (index,domEle){
+   index : 就是索引值
+  domEle : 表示获取遍历每一个dom对象
+});
+3、更适用的遍历方法
+1）先获取某个集合对象
+2）遍历集合对象的每一个元素
+var data = $(".testClass");
+$.each(data,function (index,domEle){
+  data : 是要遍历的集合
+  index : 就是索引值
+  domEle : 表示获取遍历每一个dom对象
+});
+
+
+1、单行文本框：
+<input type="text" style="height:20px;width:100px;" />
+
+2、多行文本框（文本域）：
+<textarea style="width:300px;height:100px;"></textarea>
+
+
+https://css.doyoe.com/
+
+
+11/26
+
+Xml代码：
+
+<Context docBase="C:/projects/CS_IMP_Web_Client" path="/CS_IMP_Web_Client" reloadable="true" />
+path：是访问时的根地址，表示访问的路径；如上述例子中，访问该应用程序地址如下：http://localhost:8080/CS_IMP_Web_Client/
+
+reloadable：表示可以在运行时在classes与lib文件夹下自动加载类包。其中reloadable="false"表示当应用程序 中的内容发生更改之后服务器不会自动加载，这个属性在开发阶段通常都设为true，方便开发，在发布阶段应该设置为false，提高应用程序的访问速度。
+
+docbase：表示应用程序的路径，注意斜杠的方向“/”。 docBase可以使用绝对路径，也可以使用相对路径，相对路径相对于webapps。
+
+
+「after()」は、対象要素の次に新しいHTML要素を追加できるメソッドになります。
+
+Html中CSS之去除li前面的小黑点 通过设置list-style:none来设置的，有的是会用list-style-type
+
+$("input[name='ch']").each(function(index){
+if($(this).attr("checked")==true){
+//一些操作代码
+}
+}
+
+
+display: inline-block;
+  width: 50px;
+
+height: 32px;
+line-height: 32px;
+
+
+padding-left: 0px;
+
+height: 27px;
+line-height: 27px;
+padding-left: 10px;
+ul.ulMenu li
+
+
+11/27
+//パラメータを取得する
+  userMode = location.search;
+  userMode = userMode.substring(10, userMode.length);
+
+11/28
+//色変える
+$("li").hover(
+function() {
+  $(this)
+    .children(".newMark")
+    .css("color", "#000");
+},
+function() {
+  //色指定を空欄にすれば元の色に戻る
+  $(this)
+    .children(".newMark")
+    .css("color", "red");
+}
+);
+
+
+
+12/02
+普通函数的调用：this指向window(浏览器环境)。
+对象方法的调用：this指向调用对象。（隐式绑定）
+构造函数：this指向构造函数实例。
+apply、call、bind：this指向绑定值。（显示绑定）
+箭头函数this：this指向外层第一个普通函数调用的this。（默认绑定）
+
+z-index 层叠规则
+
+
+12/03
+
+
+12/04
+
+ErrorRender.showTopMsg
+ErrorRender.topTip
+
+EF3L990026
+EF3L9C0007
+EF3L9C0008
+EF3L9B0093
+EF3L9B0092
+EF3L9B0091
+
+EF3L9B0032
+
+
+EF3L9A0023
+EF3L9B0090
+EF3L9B0091
+
+http://localhost:8080/CS_IMP_Web_Client/views/tktehai/jobreg.html
+
+M2877
+
+M2895
+
+12/09
+ 介绍一下你对浏览器内核的理解？
+
+主要分成两部分：渲染引擎(layout engineer或Rendering Engine)和JS引擎。
+
+<!DOCTYPE>告知浏览器的解析器用什么文档标准解析这个文档。DOCTYPE不存在或格式不正确会导致文档以兼容模式呈现。
+
+JavaScript由三部分组成：
+1. ECMAScript（核心）
+2. DOM（文档对象模型）
+3. BOM （浏览器对象模型）
+
+
+12/10
+
+$("#cbxTkThitoksy").prop("selectedIndex", 0);
+$.trim(undefined)
+""
+$.trim(null)
+""
+
+Utils.getHideData($("#torihk"))
+{key: "MSC 中部/OP2課", value: "M2877"}
+
+
+ttlWeight
+ttlWeightTaniCd
+
+
+
+
+
+
+
+
+
+12/11
+Utils.paramFormat()
+opeMonth
+skyMonth
+MSC 中部/OP2課
+
+
+
+
+
+12/12
+ErrorRender.topMsg = ErrorRender.topMsg.reverse();
+
+google.charts.load
+google Charts 指南
+前端开发 —— google chart 的使用
+
+
+
+https://developers.google.com/chart
+
+https://jsfiddle.net/api/post/library/pure/
+
+
+
+12/16
+
+$ git remote remove origin
+
+$ git remote -v
+
+$ git remote add origin http://10.216.243.120:8080/gitbucket/git/MITSUI_SOKO/CS_IMP_Web_Client.git
+
+
+$ git merge develop
+
+
+https://developers.google.com/chart/interactive/docs/reference#google_visualization_charteditor
+
+
+//tomcat
+	
+web.xml ファイルにて、
+Built In Servlet Definitions 部の listings を、true に設定すれば、ディレクトリ一覧を表示させることが出来ます。
+のディレクトリの一覧
+http://localhost:8080/CS_IMP_Web_Client/
+ <servlet>
+        <servlet-name>default</servlet-name>
+        <servlet-class>org.apache.catalina.servlets.DefaultServlet</servlet-class>
+        <init-param>
+            <param-name>debug</param-name>
+            <param-value>0</param-value>
+        </init-param>
+        <init-param>
+            <param-name>listings</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+	
+	
+	
+	
+	informationReg
+	
+	git config core.ignorecase false 
+ 
+1. 没有预解析，不存在变量提升，在代码块内，只要let定义变量，在之前使用，都是报错先定义完，再使用
+2. 同一个作用域里， 不能重复定义变量
+3. for循环，for循环里面是父级作用域，里面又一个
+
+
+12/23
+SVN是集中式版本控制系统，版本库是集中放在中央服务器的，而干活的时候，用的都是自己的电脑，所以首先要从中央服务器哪里得到最新的版本，然后干活，干完后，需要把自己做完的活推送到中央服务器。集中式版本控制系统是必须联网才能工作，如果在局域网还可以，带宽够大，速度够快，如果在互联网下，如果网速慢的话，就纳闷了。
+
+Git是分布式版本控制系统，那么它就没有中央服务器的，每个人的电脑就是一个完整的版本库，这样，工作的时候就不需要联网了，因为版本都是在自己的电脑上。既然每个人的电脑都有一个完整的版本库，那多个人如何协作呢？比如说自己在电脑上改了文件A，其他人也在电脑上改了文件A，这时，你们两之间只需把各自的修改推送给对方，就可以互相看到对方的修改了。
+	
+	
+查看分支：git branch
+
+创建分支：git branch name
+
+切换分支：git checkout name
+
+创建+切换分支：git checkout –b name
+
+合并某分支到当前分支：git merge name
+
+删除分支：git branch –d name
+
