@@ -1,0 +1,1120 @@
+
+
+1/20
+//データベース基本情報
+<add name="DataConnection" connectionString="Data Source= 10.200.129.20;Initial Catalog=H0JM;User ID=sa;Password=doc@1234" />
+
+
+VBA窗口最快捷的方式是用快捷?：Alt+F8
+
+tianhui.zhang.jd@hitachi.com
+
+s12345678
+
+
+
+1/21
+在 ADO 程序开发中，记录集对象 Recordset 对象代表一个表的记录集合或者是一个SQL命令或是存储过程的执行结果。
+简单的说，记录集实际上缓存了从数据库获得的记录，应用程序可以从记录集中获得每条记录的字段。
+
+
+
+//在RecordSet组件中，常用的属性和方法有：
+
+　　rs.Fields.Count：RecordSet对象字段数。
+
+　　rs(i).Name：第i个字段的名称，i为0至rs.Fields.Count-1
+
+　　rs(i)：第i个字段的数据，i为0至rs.Fields.Count-1
+
+　　rs("字段名")：指定字段的数据。
+
+　　rs.Record.Count：数据记录总数。
+
+　　rs.EOF：是否最后一条记录。
+
+　　rs.MoveFirst：指向第一条记录。
+
+　　rs.MoveLast：指向最后一条记录。
+
+　　rs.MovePrev：指向上一条记录。
+
+　　rs.MoveNext：指向下一条记录。
+
+　　rs.GetRows：将数据放入数组中。
+
+　　rs.Properties.Count：ADO的ResultSet或Connection的属性个数。
+
+　　rs.Properties(item).Name：ADO的ResultSet或Connection的名称。
+
+　　rs.Properties：ADO的ResultSet或Connection的值。
+
+　　rs.close()：关闭连接。
+　　
+　　利用fields属性获取所有字段名，fields包含了当前记录有关的所有字段,fields.count得到字段的数量
+　
+　
+　　1、字段数量：rst.fields.count；
+　　2、字段名称：rst.fields(0).name，0表示第一个字段，其它字段分别是1,2,...rst.fields.count-1；
+　　3、字段值：rst(0)或者rst(0).Value或者rst.fields(0).value，0表示第一个字段，也可以用字段名代替，如：rst("city")；
+　　4、整个记录集： Range("a2").CopyFromRecordset rst命令将记录集保存到A2单元格开始的工作表中；
+　　5、记录移动：取数后记录定位在第一条，rst.movenext可以移动到下一条，结尾标志：rst.eof = true，Excel VBA只支持向前移动(rst.movenext)；
+　　例如：        
+　　Do While Not rst.EOF()            
+　　k = k + 1            s
+　　ku(k, 1) = rst(0)            
+　　sku(k, 2) = rst(1)            
+　　rst.MoveNext        
+　　Loop
+　　6、记录数：rst.RecordCount是反馈记录数的，是否有值要看SQL语句的执行方式。
+执行SQL语句有三种方式，一种是cnn. Execute，这种方式比较适合无返回记录的语句，即DML语句。如果执行有返回记录的SQL语句，也可以取到记录，只是RecordCount总是反馈-1。这种情况下可以根据rst.eof判断有无查询结果，如果rst.eof= true就表示查询结果为空。另一种方式是rst.Open，这个适合有返回记录的语句，即select语句，因为这种方式能够返回记录数RecordCount。当然还有第三种方式，就是用command，这个比较适合执行存储过程，因为这种方式可以传递参数。三种方式command方式功能最强，用起来也最麻烦，connection最弱，用起来也最简单。
+
+
+strSQL = "SELECT * FROM [H0JM_M_RITSU]WHERE UPD_USER='" & "user1" & "';"
+
+
+1、Worksheets(2).select 
+
+同Sheets(2).select ，指由左至右第2个Sheets，即Sheet1，包含隐藏sheet！
+
+2、Worksheets("Sheet1").select
+
+同Sheets("Sheet1").select ，直接选中指定名称的sheet，双引号内为sheet名称，选中Sheet1
+
+
+OLE DB 接続マネージャーを使用すると、パッケージは OLE DB プロバイダーを使用してデータ ソースに接続できます。
+
+
+1/22
+
+for i = 1 to LastRow
+    sqlString = "INSERT INTO TableName (Field1, Field2, Field3, Field4...) VALUES (Cells(i, 1), Cells(i, 2), Cells(i, 3), Cells(i, 4)...)"
+    con.Execute(sqlString)
+next
+
+   //VBAデータ型
+     ' 文字列型
+    Dim A As String             ' 0～2GB
+    Dim B As String * 10        ' 10文字に限定
+
+    ' 整数型
+    Dim C As Integer            ' -32,768～32,767の範囲
+    Dim D As Long               ' -2,147,483,648～2,147,483,647の範囲
+
+    ' 実数型
+    Dim E As Single             ' -3.402823E38～-1.401298E-45(負),
+                                ' 1.401298E-45～3.402823E38(正)の範囲
+    Dim F As Double             ' -1.79769313486232E308～-4.94065645841247E-324(負),
+                                ' 4.94065645841247E-324～1.79769313486232E308(正)の範囲
+    ' 通貨型
+    Dim G As Currency           ' -922,337,203,685,477.5808～922,337,203,685,477.5807
+
+     ' バイト型
+    Dim H As Byte               ' 0～255の範囲
+
+    ' ブール型
+    Dim I As Boolean            ' 真(True)又は偽(False)
+
+     ' 日付型
+    Dim J As Date               ' 西暦100年1月1日～西暦9999年12月31日
+
+    ' バリアント型
+    Dim K As Variant            ' データ型を明示しない時と同じ
+    
+    
+    
+    //DBデータ型
+    整数型 tinyint 0 ～ 255　の範囲の数値 1 
+smallint おおよそ　-3万 ～ 3万の範囲の数値 2 
+int おおよそ　-20億 ～ 20億の範囲の数値 4 
+bigint おおよそ　-900京 ～ 900京の範囲の数値 8 
+小数(真数型) decimal(p, s) p：全体桁数　s：小数点以下桁数
+ 固定長の有効桁数と小数点以下桁数を持つため誤差は発生しない（10進数）  5 ～ 17 
+numeric(p, s) 
+小数(概数型) float(n) n：仮数のビット数　浮動小数点数 4 ～ 8 
+real 浮動小数点数 4 
+文字列 char(n) 固定長文字列(8000バイトまで) n 
+varchar(n) 可変長文字列(8000バイトまで) 実際のバイト数 + 2 
+varchar(max)
+ text  可変長文字列(2GBまで) 
+Unicode文字列 nchar(n) Unicode固定長文字列(8000バイトまで) 2n 
+nvarchar(n) Unicode可変長文字列(8000バイトまで) (実際のバイト数) * 2 + 2 
+nvarchar(max)
+ ntext  Unicode可変長文字列(2GBまで) 
+日付 smalldatetime 精度：1分 4 
+datetime 精度：3.33ミリ秒 8 
+date 精度：1日 3 
+time 1日の時刻のみを格納し、精度は100ナノ秒 3～ 5 
+datetime2 精度：100ナノ秒 6 ～8 
+datetimeoffset 精度：100ナノ秒　タイムゾーン付き 8 ～10 
+金額・通貨 smallmoney 金額や通貨を表す(範囲狭) 4 
+money 金額や通貨を表す(範囲広) 8 
+バイナリ binary(n) 固定長バイナリデータ(8000バイトまで) n 
+varbinary(n) 可変長バイナリデータ(8000バイトまで) 実際のバイト数 + 2 
+varvinary(max)
+ image  可変長バイナリデータ(2GBまで) 
+その他 bit 1, 0, NULL のどれか 1 
+table SELECT文実行結果のテーブルを格納可能 実際のデータ量 
+XML XMLデータを格納可能   
+uniqueidentifier 16バイトのGUID(グローバルユニークID) 16 
+timestamp
+ (rowversion)  テーブルのデータが更新される度に加算されるカウンタ(行バージョンを格納) 8 
+sql_variant 複数のデータ型を格納可能 実際のバイト数 
+ 
+
+
+1/23
+//ADO 对象简介 
+onnection Command 和 Recordset 是ADO 的核心. 
+通过 Connection 和数据库建立连接. 
+然后 利用 command 执行查询.从而返回结果. 
+最后把结果(记录集) 存入 Recordset 对象. 
+然后访问 Recordset 对象就可以获得 查到的内容. 
+
+
+if rs.bof then 
+表示：当前指针的位置是在第一行记录之前 
+if rs.eof then 
+表示：当前指针的位置是在最后一行记录之后 
+
+if not (rs.bof and rs.eof) then 
+表示：指针位于 RecordSet 的当中（并非是最后一条和第一条） ，说明一定有记录。 
+if rs.bof and rs.eof then 
+表示：没有任何记录 
+
+
+cn.CursorLocation = adUseClient
+の行を追加したら取得できました。
+
+
+function是函数，sub是子程序，都可以传递参数，但函数有返回值，子程序没有 
+sub称为过程， function称为函数，他们之间的唯一区别是function有返回值。
+
+Application.Run ブック名！モジュール名.マクロ名 
+Sub Callの使い方()
+
+Call Module2.ActiveLine_highlight
+
+Call Module3.囲み罫
+
+Call Module4.拡大125
+
+End Sub
+
+
+Sheets("Sheet1").Activate
+「Sheet.Activate メソッド」を使います
+aaaというシート名のシートを選択（アクティブに）する
+
+
+Sub SheetActiveTest1()
+　　Sheets("aaa").Activate
+End Sub
+
+//路径本身
+folderPath = Application.ActiveWorkbook.Path
+//工作簿名称
+myPath = Application.ActiveWorkbook.FullName
+//获得当前工作表的名字。
+fname = ActiveSheet.Name
+//B 列
+Range("B1").EntireColumn 
+//列数
+Worksheets("Sheet1").Range("M2:R2").Columns.Count ' 6
+
+
+
+1/28
+    '// 入力セル範囲の最終行と最終列を取得
+    iRow = Worksheets(Fname).UsedRange.Rows.Count + Worksheets(Fname).UsedRange.Row - 1
+    iCol = Worksheets(Fname).UsedRange.Columns.Count + Worksheets(Fname).UsedRange.Column - 1
+    'アクティブシートの背景色をクリアする
+    Worksheets(Fname).Range(Range("A14"), Cells(iRow, iCol)).Interior.ColorIndex = xlNone
+
+1/29
+
+1/30
+
+1/31
+连接类型：
+连接分为三种：内连接、外连接、交叉连接。
+
+SQL语句的执行过程
+SQL语句 → 解析 → 查询转换 → 查询优化器(RBO|CBO)→执行计划→实际执行→ 返回结果
+ 连接器： 身份认证和权限相关(登录 MySQL 的时候)。
+•查询缓存: 执行查询语句的时候，会先查询缓存（MySQL 8.0 版本后移除，因为这个功能不太实用）。
+•分析器: 没有命中缓存的话，SQL 语句就会经过分析器，分析器说白了就是要先看你的 SQL 语句要干嘛，再检查你的 SQL 语句语法是否正确。
+•优化器： 按照 MySQL 认为最优的方案去执行。
+•执行器: 执行语句，然后从存储引擎返回数据。
+
+
+//Server 层：主要包括连接器、查询缓存、分析器、优化器、执行器等，所有跨存储引擎的功能都在这一层实现，比如存储过程、触发器、视图，函数等，还有一个通用的日志模块 binglog 日志模块。
+//存储引擎： 主要负责数据的存储和读取，采用可以替换的插件式架构，支持 InnoDB、MyISAM、Memory 等多个存储引擎，其中 InnoDB 引擎有自有的日志模块 redolog 模块。现在最常用的存储引擎是 InnoDB，它从 MySQL 5.5.5 版本开始就被当做默认存储引擎了。
+
+
+//简单来说 MySQL 主要分为 Server 层和存储引擎层：
+
+8.表连接顺序 ：不管有多少个表连接，Oracle都会先做两两连接，知道目标SQL全部连接。要决定先连接哪两个，要决定谁做驱动表(inner table)。
+
+
+Left join
+
+左连接，取表a的所有行，和b表中匹配的值，没有匹配的则以null值取代。
+Right join
+
+右连接，取表b的所有行，和a表中匹配的值，没有匹配的则以null值取代。
+内连接（Inner Join）
+
+Inner指的是 intersect相交,顾名思义就是取两表的交集。
+
+所谓"连接"，就是两张表根据关联字段，组合成一个数据集。
+
+
+不同的数据库对于同一条SQL语句的底层实现不同
+
+1，一条查询的sql语句先执行的是 FROM 负责把数据库的表文件加载到内存中去
+
+2，WHERE grade < 60，会把（图1.0）所示表中的数据进行过滤
+
+3，GROUP BY `name`会把图（1.3）的临时表切分成若干临时表
+
+
+5，HAVING num >= 2对上图所示临时表中的数据再次过滤，
+
+6，ORDER BY num DESC,`name` ASC对以上的临时表按照num，name进行排序。
+
+7，LIMIT 0,2取排序后的前两个。
+
+
+子查询就是在一条查询语句中还有其它的查询语句，主查询得到的结果依赖于子查询的结果。
+
+
+1，在外表大，内表小，外表中有索引的情况下，使用IN。
+
+2，在外表小，内表大，内表中有索引的情况下，使用EXITS。
+
+EXITS又简称代入查询，就是把主表的每一行代入子表的每一行进行检验，一旦子表中有符合的数据行就返回true
+
+
+
+
+2/3
+
+sql 事务
+
+commit命令
+commit命令用于把事务所做的修改保存到数据库，它把上一个commit或rollback命令之后的全部事务都保存到
+数据库。在执行 commit transaction语句后不能回滚事务。
+rollback命令
+rollback命令用于撤销还没有保存到数据库的命令，它只能用于撤销上一个commit或rollback命令之后的事务
+savepoint命令(在sql中为save tran或save transaction)
+保存点是事务过程中的一个逻辑点，我们可以把事务回退到这个点，而不必回退整个事务。
+
+
+
+2/4
+
+t-cho@systems-inc.co.jp
+s12345678
+
+事务是数据库运行中的一个逻辑工作单位，由DBMS中的事务管理子系统负责事务的处理。事务具有ACID四种特性：
+
+数据库事务类型有本地事务和分布式事务：
+•本地事务：就是普通事务，能保证单台数据库上的操作的ACID，被限定在一台数据库上；
+•分布式事务：涉及两个或多个数据库源的事务，即跨越多台同类或异类数据库的事务（由每台数据库的本地事务组成的），分布式事务旨在保证这些本地事务的所有操作的ACID，使事务可以跨越多台数据库；
+
+Java事务类型有JDBC事务和JTA事务：
+•JDBC事务：就是数据库事务类型中的本地事务，通过Connection对象的控制来管理事务；
+•JTA事务：JTA指Java事务API(Java Transaction API)，是Java EE数据库事务规范， JTA只提供了事务管理接口，由应用程序服务器厂商（如WebSphere Application Server）提供实现，JTA事务比JDBC更强大，支持分布式事务。
+
+
+Application对象是Excel对象模型中最高层级的对象，代表Excel应用程序自身，也包含组成工作簿的许多部分，包括工作簿、工作表、单元格集合以及它们包含的数据。 
+
+
+Sheets(Array("Sheet2", "Sheet3")).Copy
+ActiveWorkbook.Close
+
+Worksheets("Sheet2").Visible = False
+    MsgBox "Sheet2を非表示にしました。" 
+Worksheets("Sheet2").Visible = True
+
+     'パス取得
+'    filePath = Worksheets("メニュー").Range("E19").Value
+'    'パス存在判断
+'    bResult = Dir(filePath, vbDirectory)
+'    '判断結果
+'    If bResult = "ユーザ棚卸表.xlsx" Then
+'        Workbooks.Open Filename:=filePath
+'        Worksheets("ユーザ一覧").Range("A1").Value = "一時保存"
+'
+'        '出力ファイル名
+'        fname = Application.GetSaveAsFilename( _
+'            filefilter:="Excelファイル,*.xlsx,全てのファイル,*.*", _
+'            FilterIndex:=1, _
+'            InitialFileName:="ユーザ棚卸表" + "_" + DateTime + ".xlsx", _
+'            Title:="出力ファイルの保存")
+'        '出力ファイル正常
+'        If fname <> "False" Then
+'            ActiveWorkbook.SaveAs Filename:=fname
+'            ActiveWorkbook.Close
+'        Else
+'            '出力ファイル異常
+'            MsgBox "出力ファイル異常"
+'        End If
+'    Else
+'       MsgBox "ファイルが存在しません"
+'    End If
+
+
+'    Dim filePath           As String
+'    Dim bResult            As String
+'    Dim FolderPath         As String      'パース
+'
+'    'ツールパース
+'    FolderPath = Application.ActiveWorkbook.Path
+'
+'    'パス取得
+'    filePath = Worksheets("メニュー").Range("E19").Value
+'    'パス存在判断
+'    bResult = Dir(filePath, vbDirectory)
+'
+
+
+
+
+'    '判断結果Falseの場合
+'    If bResult <> "ユーザ棚卸表.xlsx" Then
+'        '参照フォルダ指定する
+'        With CreateObject("WScript.Shell")
+'            .CurrentDirectory = FolderPath + "\"
+'        End With
+'        'ファイル参照ダイアログの表示
+'        filePath = Application.GetSaveAsFilename( _
+'                filefilter:="ユーザ棚卸表,*.xlsx", _
+'                Title:="ファイル取得")
+'        '保存ボタン
+'        If filePath <> "False" Then
+'            MsgBox filePath
+'            'ファイルが指定されたらファイルパスをセルに入力
+'            Worksheets("メニュー").Range("E19").Value = filePath
+'        Else
+'            'キャンセルボタン
+'            MsgBox "キャンセルされたら処理を終了します"
+'        End If
+'    Else
+'            MsgBox "ファイルが存在する"
+'    End If
+
+
+
+2/5
+
+
+2/6
+InnoDB 引擎现在广为使用，它提供了事务，行锁，日志等一系列特性
+1、Connectors
+指的是不同语言的应用程序接口（如JDBC、ODBC、Python等）与 MySQL 的连接交互层；
+
+
+2/7
+//JDBC开发细节（六步）-------这是原理，后期不用这么复杂
+a. 注册数据库驱动; Class.forName(“com.mysql.jdbc.Driver”);
+b. 获取数据库连接; Connection conn = DriverManager.getConnection(“jdbc:mysql://localhost:3306/jt_db? useUnicode=true&characterEncoding=utf-8”, “root”, “root”);
+c. 获取传输器;  Statement stat = conn.createStatement();
+d. 利用传输器发送SQL到数据库执行，并返回执行结果; ResultSet rs = stat.executeQuery(“select * from account”);
+e. 处理结果:将表中所有的记录输出在控制台;while (rs.next()) {
+f. 释放资源; rs.close();
+ 
+PreparedStatement对象
+ 在开发中我们用的更多的传输器对象是PreparedStatement，PreparedStatement是Statement的子接口，比Statement更加安全，并且能够提高程序执行的效率。
+
+
+表类型又称之为存储引擎. 存储引擎说白了就是如何存储数据,如何存储的数据建立索引和如何更新,查询数据等
+ 技术的实现法.因为在关系数据库中数据的存储是以表的形式存储的,所以存储引擎也可以称为
+
+
+.Range("C14").Resize(rs.RecordCount, rs.Fields.Count).Borders.LineStyle = xlContinuous
+
+//SQL查询语句的执行顺序 
+1.from子句组装来自不同数据源的数据；
+2.where子句基于指定的条件对记录行进行筛选；
+3.group by子句将数据划分为多个分组；
+4.使用聚集函数进行计算；
+5.使用having子句筛选分组；
+6.计算所有的表达式；
+7.select 的字段；
+8.使用order by对结果集进行排序。
+
+
+
+1.FROM < left_table>
+2.ON < join_condition>
+3.< join_type> JOIN < right_table>
+4.WHERE < where_condition>
+5.GROUP BY < group_by_list>
+6.WITH {cube | rollup}
+7.HAVING < having_condition>
+8.SELECT
+9.DISTINCT
+10.ORDER BY < order_by_list>
+
+
+
+2/12
+Server层分别为连接管理、解析与优化、查询优化器和执行器，而Server层与存储引擎之间的交互则通过统一的API进行调用
+
+1 连接管理器 >>>>>> 连接管理器的作用是管理和维持所有MySQL客户端的请求连接
+2 查询缓存   >>>>>>判断相应的权限，符合权限，则直接返回结果。 
+3 解析器     >>>>>>解析器先进行词法分析，对我们输入的语句进行拆解，折解后再进行语法分析，判断我们输入的语句是不是符合MySQL的语法规则
+4 查询优化器 >>>>>>优化器会根据SQL语句的查询条件决定使用哪一个索引，如果有连接(join)，会决定表的查询顺序，最终会根据优化的结果生成一个执行计划交由下面的执行器去执行
+5 执行器     >>>>>>执行器通过存储引擎API向底层的存储发送相应的指令，存储引擎负责具体执行，并将执行结果告诉执行器，然后再返回给客户端。
+6 存储引擎   >>>>>>具体作用便是决定一个数据表怎么处理和存储表中的数据
+
+
+//SQL Server的存储引擎
+大致分为以下几部分：
+1. 数据库如何读写数据
+2. 内存
+3. 日志
+4. 数据
+5. 索引的结构和分类
+6. 索引的遍历和维护
+
+
+2/13
+//InnoDB存储引擎 
+•为MySQL提供了具有提交、回滚和崩溃恢复能力的事物安全（ACID兼容）存储引擎。
+InnoDB锁定在行级并且也在SELECT语句中提供一个类似Oracle的非锁定读。这些功能增加了多用户部署和性能。
+在SQL查询中，可以自由地将InnoDB类型的表和其他MySQL的表类型混合起来，甚至在同一个查询中也可以混合
+•InnoDB存储引擎为在主内存中缓存数据和索引而维持它自己的缓冲池。
+InnoDB将它的表和索引在一个逻辑表空间中，表空间可以包含数个文件（或原始磁盘文件）。这与MyISAM表不同，
+比如在MyISAM表中每个表被存放在分离的文件中。InnoDB表可以是任何尺寸，即使在文件尺寸被限制为2GB的操作系统上
+•InnoDB支持外键完整性约束，存储表中的数据时，每张表的存储都按主键顺序存放，如果没有显示在表定义时指定主键，InnoDB会为每一行生成一个6字节的ROWID，并以此作为主键
+
+
+
+//数据库存放数据的文件，本文称其为data file。
+
+//Undo/Redo日志
+用户生成一个数据库事务时，undo log buffer会记录被修改的数据的原始值，redo会记录被修改的数据的更新后的值。
+
+
+2/14
+
+
+//UNDO和REDO机制
+redo undo机制是在数据库引擎曾实现的。
+undo机制如下：
+假设有A、B两个数据，值分别为1,2。
+A.事务开始.
+B.记录A=1到undo log.
+C.修改A=3.
+D.记录B=2到undo log.
+E.修改B=4.
+F.将undo log写到磁盘。
+G.将数据写到磁盘。
+H.从磁盘文件中删除之前的undo记录（事务提交）
+核心在于先写undo到磁盘，再写数据。
+这样，如果系统在GH之间崩溃，重启系统只需要按照undo重写即可。这个机制保证了事务的原子性，缺点在于每次日志提交都要更新undo日志，存在大量的磁盘IO。
+
+
+
+redo机制
+引入了redo+undo的机制。
+A.事务开始.
+B.记录A=1到undo log.
+C.修改A=3.
+D.记录A=3到redo log.
+E.记录B=2到undo log.
+F.修改B=4.
+G.记录B=4到redo log.
+H.将redo log写入磁盘（事务提交）
+I.放弃该事务的undo日志
+
+在事务提交前任何过程中任何时刻决定回滚，先吧undo写入磁盘，再把redo写入磁盘。之所以不采用放弃redo日志的方法，是因为redo日志为了提高效率，设计为只能追加。
+ 这样，系统崩溃后，只需要先运行redo log，后运行undo log就可以。
+
+2/17
+ 网关(Gateway)又称网间连接器、协议转换器。网关在网络层以上实现网络互连，是最复杂的网络互连设备
+
+
+
+
+2/18
+
+2/19
+网关往往是一个路由器，是一个三层转发的设备。所谓三层设备，就是把 MAC 头和 IP 头都取下来，然后根据里面的内容，看看接下来把包往哪里转发的设备。
+把网关就叫作路由器是不完全准确的。路由器是一台设备，它有五个网口或者网卡，相当于有五只手，分别连着五个局域网。每只手的 IP 地址都和局域网的 IP 地址相同的网段，每只手都是它握住的那个局域网的网关。
+
+
+//计算机网络（一）
+
+
+
+2/20
+
+a.主键自动建立唯一索引；
+
+b.频繁作为查询条件的字段应该创建索引；
+
+c.查询中与其他表有关联的字段，例如外键关系；
+
+d.高并发的情况下一般选择复合索引；
+
+e.查询中排序的字段创建索引将大大提高排序的速度（索引就是排序加快速查找）；
+
+f.查询中统计或者分组的字段；
+
+g.存储空间固定的字段更适合选作索引的关键字，例：与 text 类型的字段相比， char 类型的字段较为适合选作索引关键字
+
+
+
+2/21
+
+
+
+2/25
+
+
+2/26
+创建线程池主要是ThreadPoolExecutor类来完成，ThreadPoolExecutor的有许多重载的构造方法，通过参数最多的构造方法来理解创建线程池有哪些需要配置的参数
+
+最关键的是CPU和操作系统的交互
+
+
+
+2/27
+什么是RFC？
+
+ RFC是SAP系统和其他（SAP或非SAP）系统间的一个重要而常用的双向接口技术，也被视为SAP与外部通信的基本协议。简单地说，RFC过程就是系统调用当前系统外的程序模块，从而实现某个功能，而且调用系统和被调用系统中至少有一个必须是SAPABAP系统。这种远程功能调用也可在同一系统内部进行（如本地SAP系统内的远程调用）；但通常情况下，调用程序和被调用程序处于不同系统。
+
+RFC调用过程
+
+     在系统间通信过程中，需区分发送系统和接受系统。RFC调用请求从发送系统（调用系统）中传至接收系统（被调用系统，也称远程系统或目标系统），发送请求的系统在通信过程中又称为RFC客户端，通信另一方则称为RFC服务器。RFC客户端发起远程功能调用以执行RFC服务器提供的功能。
+
+    其中，调用系统和被调用系统均可以是SAP系统和非SAP系统，此外还可以在SAP系统内部将特定应用服务器指定为目标系统。
+
+RFC通信的情况
+
+    根据通信方向和系统类型，共有如下三种RFC通信：
+
+    *两个独立的SAP系统之间的通信；
+
+    *SAP系统作为调用系统，与外部远程系统（非SAP ABAP系统）通信；
+
+    *外部系统作为调用系统，与SAP系统通信。
+
+ RFC接口系统
+
+    SAP调用远程功能的能力是通过RFC接口系统(RFC interface system)实现的。根据调用方向的不同（SAP系统调用其他模块或其他系统调用SAP模块），RFC接口提供以下两种服务。
+
+（1）ABAP程序的调用接口
+
+（2）非SAP ABAP程序的调用接口。
+
+
+
+ RFC是基于CPI-C实现的。
+
+<appSettings> 
+   <add key=”ServerHost” value=”127.0.0.1″/>
+   <add key=”SystemNumber” value=”00″/>
+   <add key=”User” value=”sample”/>  
+   <add key=”Password” value=”pass”/>
+   <add key=”Client” value=”50″/>
+   <add key=”Language” value=”EN”/>
+   <add key=”PoolSize” value=”5″/>
+   <add key=”PeakConnectionsLimit” value=”10″/>
+   <add key=”IdleTimeout” value=”600″/>   
+</appSettings>
+
+通过RFC(C#)连接SAP系统
+
+具备条件
+
+1.vs2010
+
+2.sap公司发布的nco3
+
+3.sap的服务器端口密码
+
+4.sap的可远程操作的调用函数
+
+
+
+3/2
+git clone http://admin@10.229.135.127:8080/r/Batch.git
+
+          http://admin@10.229.135.127:8080/r/H0JM.git
+origin” 并无特殊含义
+
+$ git config --global user.name "John Doe"
+$ git config --global user.email johndoe@example.com
+$ git remote add pb https://github.com/paulboone/ticgit
+$ git remote -v
+
+远程仓库名字 “origin” 与分支名字 “master” 一样，
+在 Git 中并没有任何特别的含义一样。 同时 “master” 是当你运行 git init 时默认的起始分支名字，
+原因仅仅是它的广泛使用，“origin” 是当你运行 git clone 时默认的远程仓库名字。 如果你运行 git clone -o booyah，那么你默认的远程分支名字将会是 booyah/master。
+
+删除远程分支 git push origin --delete serverfix
+git pull 都会查找当前分支所跟踪的服务器与分支，从服务器上抓取数据然后尝试合并入那个远程分支。
+git remote rename 去修改一个远程仓库的简写名。 例如，想要将 pb 重命名为 paul，可以用 git remote rename 这样做
+
+git init  和 git init –bare 的区别
+
+ 使用命令"git init --bare"(bare汉语意思是:裸,裸的)初始化的版本库(暂且称为bare repository)只会生成一类文件:用于记录版本库历史记录
+
+
+3/3
+在开始架设 Git 服务器前，需要把现有仓库导出为裸仓库——即一个不包含当前工作目录的仓库
+
+
+1.在服务器上（我用的是Ubuntu）安装git，简单，不说了。
+
+2.在客户机上（Win10）安装Git，简单，不说了。
+
+3.在服务器上添加一个用户，一般都叫git，这个不重要。
+# useradd git -d /home/git -m -s /bin/bash
+ -d：指定用户目录
+ -m：如果目录不存在则创建
+ -s：可以指定用户使用的命令
+4.创建git仓库
+ $ su git
+ $ cd ~
+ $ git init --bare myserver.git
+
+
+5.服务端设置从现在看就差不多了，一会儿还有别的，先配置客户机
+
+6.生成密钥对
+
+7.将id_rsa.pub传到服务器上，执行cat id_rsa.pub >> ~/.ssh/authorized_keys，此语句作用大家都懂。
+
+8.命令行下输入git clone git@IP:/home/git/myserver.git，常用命令如下，含义顾名思义。
+10.其实就能正常用了，在WebStorm中配置是这样的：
+•VCS > Checkout from Version Control > Git
+• URL填入ssh://git@IP:PORT/home/git/myserver.git，OK。
+
+
+
+
+3/4
+3/5
+Windows PowerShell 是一种命令行外壳程序和脚本环境，使命令行用户和脚本编写者可以利用.NET Framework的强大功能。
+
+
+TypeScript和js区别
+
+TypeScript 从核心语言方面和类概念的模塑方面对 JavaScript 对象模型进行扩展。
+
+• 
+JavaScript 代码可以在无需任何修改的情况下与 TypeScript 一同工作，同时可以使用编译器将 TypeScript 代码转换为 JavaScript。
+
+• 
+TypeScript 通过类型注解提供编译时的静态类型检查。
+
+• 
+TypeScript 中的数据要求带有明确的类型，JavaScript不要求。
+
+• 
+TypeScript 为函数提供了缺省参数值。
+
+• 
+TypeScript 引入了 JavaScript 中没有的“类”概念。
+
+• 
+TypeScript 中引入了模块的概念，可以把声明、数据、函数和类封装在模块中。
+
+第一，类型检查。
+第二，语言扩展。TypeScript 会包括来自 ES 6 和未来提案中的特性
+第三，工具属性。TypeScript 能够编译成标准的 JavaScript，可以在任何浏览器、操作系统上运行
+
+Bootstrap是一个大型的CSS样式包，里面包含了各种各样的CSS样式
+
+
+1.用户界面(User Interface) - 包括地址栏、前进/后退按钮、书签菜单等。除了浏览器主窗口显示的您请求的页面外，其他显示的各个部分都属于用户界面。
+2.浏览器引擎(Browser engine) - 在用户界面和呈现引擎之间传送指令。
+3.呈现引擎(Rendering engine) - 负责显示请求的内容。如果请求的内容是 HTML，它就负责解析 HTML 和 CSS 内容，并将解析后的内容显示在屏幕上。
+4.网络(Networking) - 用于网络调用，比如 HTTP 请求。其接口与平台无关，并为所有平台提供底层实现。
+5.用户界面后端(UI Backend) - 用于绘制基本的窗口小部件，比如组合框和窗口。其公开了与平台无关的通用接口，而在底层使用操作系统的用户界面方法。
+6.JavaScript 解释器(JavaScript Interpreter)。用于解析和执行 JavaScript 代码。
+7.数据存储(Data Persistence)。这是持久层。浏览器需要在硬盘上保存各种数据，例如 Cookie。新的 HTML 规范 (HTML5) 定义了“网络数据库”，这是一个完整（但是轻便）的浏览器内数据库。
+
+
+
+
+呈现引擎，又称渲染引擎，也被称为浏览器内核，在线程方面又称为 UI 线程，它是由各大浏览器厂商依照 W3C 标准自行研发的，常见的浏览器内核可以分这四种：Trident、Gecko、Blink、Webkit。
+呈现引擎将开始解析 HTML 文档，并将各标记逐个转化成“内容树”上的 DOM 节点。同时也会解析外部 CSS 文件以及样式元素中的样式数据。HTML 中这些带有视觉指令的样式信息将用于创建另一个树结构：呈现树。
+JavaScript 解释器，又称为 JavaScript 解析引擎，又称为 JavaScript 引擎，也可以成为 JavaScript 内核，在线程方面又称为 JavaScript 引擎线程
+
+
+3/6
+DHCP服务器用来给其它设备分配IP，
+
+
+
+3/10
+ ExecuteNonQuery()方法主要用户更新数据，通常它使用Update,Insert,Delete语句来操作数据库，其方法返回值意义
+
+1. 创建数据库连接；
+
+2. 创建Command对象，并指定一个SQL Inser、Update、Delete查询或者存储过程；
+
+3. 把Command对象依附到数据库连接上；
+
+4. 调用ExecuteNonQuery()方法；
+
+5. 关闭连接
+
+•command.ExecuteNonQuery(): 返回受影响函数，如增、删、改操作；
+•command.ExecuteScalar()：执行查询，返回首行首列的结果；
+•command.ExecuteReader()：返回一个数据流（SqlDataReader对象）。
+
+
+
+3/12
+游标实际上是一种能从包括多条数据记录的结果集中每次提取一条记录的机制
+
+
+
+
+リモート連結
+10.178.149.161
+customer01
+4g5U3wgZ
+
+71619082 張天会 tianhui.zhang.jd@hitachi.com
+
+
+
+Oracle存储过程包含三部分：过程声明，执行过程部分，存储过程异常。
+
+
+存储过程是一个可以执行特定行为的子程序
+
+
+
+
+3/16
+
+
+3/18
+添加字段的语法：alter table tablename add (column datatype [default value][null/not null],….);
+
+修改字段的语法：alter table tablename modify (column datatype [default value][null/not null],….);
+               ALTER TABLE tableName ALTER COLUMN columnName VARCHAR(n) 
+
+
+-- 删除索引 
+ALTER TABLE H0JM_M_SYSCTL DROP CONSTRAINT pk_createworkflow_id;
+
+-- 修改字段长度
+Alter table H0JM_M_SYSCTL alter column SYS_SUBKEY  varchar(3) not null;
+
+-- 添加主键
+Alter table H0JM_M_SYSCTL add constraint pk_createworkflow_id primary key (SYS_SUBKEY);
+
+
+删除字段的语法：alter table tablename drop (column);
+改变数据类型实例
+ALTER TABLE Persons
+ALTER COLUMN Birthday year
+ 
+DROP COLUMN 实例
+ALTER TABLE Person
+DROP COLUMN Birthday
+ 
+ 
+
+ 
+3/19
+1.truncate和不带where子句的delete、以及drop都会删除表内的数据。
+
+2.drop、truncate都是DDL语句(数据定义语言),执行后会自动提交。
+
+CREATE DATABASE students /*创建数据库students*/ON PRIMARY(    name="students_data", /*主数据文件的逻辑名*/   
+filename="D:\test\students_data.mdf", /*主数据文件储存位置*/   
+size=3mb,  /*主数据文件的初始大小*/    maxsize=100mb,  /*主数据文件的最大大小，不写就是没有限制*/ 
+filegrowth=1mb /*增量为1MB*/)log on(   /***日志文件****/    name="students_log",   
+filename="D:\test\students_log.ldf", /*日志文件储存位置*/    size=1mb,  /*日志文件的初始大小*/    filegrowth=10%  /*增长率为10%*/)
+
+ テーブル 'H0JM_TEST.dbo.H0JM_T_TTUJ'、列 'HIFCOD' で文字列またはバイナリ データが切り捨てられます。切り捨てられた値: '000'。
+ 
+ 
+ 
+画面/帳票   受払残高表  
+画面/帳票  注番別受払来歴表  
+画面/帳票  各社支払通知書  
+画面/帳票  支払明細表  
+画面/帳票  注番別売上損益明細表  
+画面/帳票  注番別売上損益明細表(CSV)  
+画面/帳票  仕訳チェックリスト  
+画面/帳票  仕訳リスト(CSV)  
+画面/帳票  追加訂正表  
+
+
+3/24
+
+游标是SQL Server的一种数据访问机制，它允许用户访问单独的数据行。用户可以对每一行进行单独的处理，从而降低系统开销和潜在的阻隔情况，用户也可以使用这些数据生成的SQL代码并立即执行或输出。
+
+
+3/26
+存储过程的好处；
+
+(1)重复使用。存储过程可以重复使用，从而可以减少数据库开发人员的工作量。
+
+(2)提高性能。存储过程在创建的时候就进行了编译，将来使用的时候不用再重新编译。一般的SQL语句每执行一次就需要编译一次，所以使用存储过程提高了效率。
+
+(3)减少网络流量。存储过程位于服务器上，调用的时候只需要传递存储过程的名称以及参数就可以了，因此降低了网络传输的数据量。
+
+(4)安全性。参数化的存储过程可以防止SQL注入式的攻击，而且可以将Grant、Deny以及Revoke权限应用于存储过程。
+
+
+所谓“设计模式”，不过是面向对象编程中一些常用的软件设计手法，并且经过实践的检验，这些设计手法在各自的场景下能解决一些需求，因此它们就成为了如今广为流传的”设计模式“。
+
+
+4/01
+批处理中常用命令介绍(Echo、rem、goto、call、pause、if、for)
+
+1. Echo ：显示当前ECHO的状态：ECHO ON 或者ECHO OFF 。
+2. ECHO ON ：ECHO状态设为ON,将显示命令行(如每行前的C:\>等类似标志)。
+3. ECHO OFF：CHO状态设为OFF,将不显示命令行(如每行前的C:\>等类似标志) 。
+4. ECHO 字符串 ：将输入的字符串显示在CMD屏幕上。
+5. ECHO 字符串 &ECHO 字符串 … ：&,类似and的意思，逻辑运算，用来显示多行数据。
+6. ECHO 字符串 > 文件路径和文件名：将字符串写入文件中，若已有数据将先清空后写入。
+7. ECHO 字符串 >> 文件路径和文件名 ：将字符串写入文件中，若已有数据将追加到末尾。
+注意每次：ECHO 字符串 >> 文件路径和文件名，命令之后，ECHO就回自动在在字符串后添加换行符，所以要想直接添加到文件末尾，那么文件中已有的数据，不能是ECHO命令先前输入的（或者手工删掉换行符）
+8. (ECHO 字符串 &ECHO 字符串…)>文件路径和文件名 ：
+将多行数据写入文件中（注意括号不能去掉，如果括号去掉的话，那么只能写入最后一个，前面的将输出在CMD窗口中。如果文件中已经有数据，将先自动清空后再写入。
+9. (ECHO 字符串 &ECHO 字符串…)>>路径和文件名
+将多行数据写入文件中（注意括号不能去掉，如果括号去掉的话，那么只能写入最后一个，前面的将输出在CMD窗口中。如果文件中已经有数据，就将该字符串追加到文件的末尾。
+10. (ECHO 字符串)>>文件路径和文件名：在文件中另起一行追加上字符串。如图所示：
+11. ECHO．：输出空行，即相当于输入一个回车
+注意命令行中的“．”要紧跟在ECHO后面中间不能有空格，否则“．”将被当作提示信息输出到屏幕。另外“．”可以用，：；＋等任一符号替代。
+12.       ECHO答复语|命令文件名：自动答复命令中的提问 ，不需要人为的输入
+13.       ECHO ^G :“^G”是用Ctrl＋G敲入连体符号，输入多个^G可以产生多声鸣响。
+
+
+
+
+4/02
+
+
+4/03
+sp_executesql的使用
+
+ADO.NET对象模型中有五个主要的组件，分别是Connection对象、Command对象、DataReader对象、DataAdapter对象以及DataSet对象。
+这些组件中负责建立联机和数据操作的部分我们称为数据操作组件（Managed Providers），分别由Connection对象、Command对象、DataAdapter对象以及DataReader对象所组成。
+数据操作组件最主要是当作DataSet对象以及数据源之间的桥梁，负责将数据源中的数据取出后植入DataSet对象中，以及将数据存回数据源的工作。
+
+• command.ExecuteNonQuery(): 返回受影响函数，如增、删、改操作；
+• command.ExecuteScalar()：执行查询，返回首行首列的结果；
+• command.ExecuteReader()：返回一个数据流（SqlDataReader对象）。
+① 执行SQL
+
+SqlCommand cmd = conn.CreateCommand();              //创建SqlCommand对象
+cmd.CommandType = CommandType.Text;
+cmd.CommandText = "select * from products = @ID";   //sql语句
+cmd.Parameters.Add("@ID", SqlDbType.Int);
+cmd.Parameters["@ID"].Value = 1;                    //给参数sql语句的参数赋值
+SqlCommand cmd = conn.CreateCommand();                      
+cmd.CommandType = System.Data.CommandType.StoredProcedure;
+cmd.CommandText = "存储过程名";
+
+
+C#中using关键字的作用及其用法
+使用using语句，定义一个范围，在范围结束时处理对象。(不过该对象必须实现了IDisposable接口)。其功能和try ,catch,Finally完全相同。
+3.4、using关键字只是针对C#语句，对于VB等其他语言还没有对应的功能。
+
+
+
+test1@yahoo.co.jp
+
+test2@yahoo.co.jp	7M2	« NULL »	« NULL »	« NULL »	2020/03/31 13:36:26
+
+
+dt.Rows[i]["KONO"].ToString().Trim()
+String.IsNullOrEmpty(chkId) 
+
+
+ string ddd = cmd.Parameters["@ERR_MSG"].Value.ToString();
+
+
+
+
+if (dt.Columns.Contains("ID") && !Convert.IsDBNull(row["ID"]))
+
+user.ID = Convert.ToInt32(row["ID"]);
+
+
+
+rolekbn
+
+uacCd
+
+rs.Fields.Count - 1
+
+
+
+5/12
+.Net的两种交互模式
+•    C/S模式：Client/Server模式，客户端/服务器模式，对应的是开发桌面应用程序Winform；
+•    B/S模式：Browser/Server模式，浏览器/服务器模式，对应的是开发Internet应用程序；
+
+单行注释（//）、多行注释（/*。。。*/）和文档注释（///）。
+	
+折叠代码：当代码较长时，前面的代码又想隐藏起来的时候就可以将代码折叠起来
+
+#Region
+.........
+#EndRegion
+
+
+http://10.178.149.161/web-seki
+
+
+5/14
+JavaSE，标准版，主要用于开发和部署桌面、服务器以及嵌入设备和实时环境中的Java应用程序。例如，Java应用程序开发平台Eclipse。
+JavaEE，企业版，主要针对企业应用的开发。例如，电子商务网站、ERP系统。
+JavaME，微型版，主要针对消费类电子设备的。例如，蜂窝电话和可视电话、数字机顶盒、汽车导航系统等等。
+
+
+AuthenticationManager（认证管理器）、AccessDecisionManager（访问控制管理器），
+
+
+
+
+5/15
+得到该对象所属的类：
+Class ownerClass = owner.getClass()
+在运行时构造一个类的对象：
+Class newoneClass = Class.forName(className)：第一步，得到要构造的实例的Class。Constructor cons = newoneClass.getConstructor(argsClass)：得到构造子。cons.newInstance(args)：新建实例。
+在运行时判断一个类所具有的成员变量和方法：
+Class ownerClass = owner.getClass()：得到该对象的Class。
+
+Field field = ownerClass.getField(fieldName)：通过Class得到类声明的属性。
+
+Object property = field.get(owner)：通过对象得到该属性的实例，如果这个属性是非公有的，这里会报IllegalAccessException。
+在运行时调用一个对象的方法：
+Method method = ownerClass.getMethod(methodName, argsClass)：通过Method名和参数的Class数组得到要执行的Method。
+
+method.invoke(owner, args)：执行该Method，invoke方法的参数是执行这个方法的对象，和参数数组。返回值是Object，也既是该方法的返回值。
+
+
+5/18
+
+
+&[ページ番号]/&[総ページ数]
+
+	
+5/19
+71619082
+パスポート変更前：s12345678
+パスポート変更後：s123456789
+
+
+
+5/20
+在类路径下包含 mybatis-spring-2.0.3.jar 文件和相关依赖即可。
+ pom.xml 中加入以下代码
+
+<dependency>
+  <groupId>org.mybatis</groupId>
+
+  <artifactId>mybatis-spring</artifactId>
+
+  <version>2.0.3</version>
+</dependency>
+
+
+
+<bean id="dataSource"
+
+    class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+    <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>  
+
+    <property name="url" value="jdbc:mysql://localhost/mysql"></property> 
+
+    <property name="username" value="root"></property> 
+
+    <property name="password" value="1234"></property>   
+
+</bean> 
+
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+
+  <property name="dataSource" ref="dataSource" />
+	
+</bean>
+	
+
+1、SQLSessionFactoryBuilder(构造器):它会根据配置信息或者代码生成SqlSessionFactory。
+2、SqlSessionFactory(工厂接口)：依靠工厂生成SqlSession。
+3、SqlSession(会话)：是一个既可以发送SQL去执行并且返回结果，也可以获取Mapper接口。
+4、SQL Mapper:是由一个JAVA接口和XML文件(或注解)构成，需要给出对应的SQL和映射规则。SQL是由Mapper发送出去，并且返回结果。
+
+
+
+
+5/21
+
+
+5/22
+定位属性： (Position)
+Position: absolute; relative; static;
+visibility: inherit; visible; hidden;
+overflow: visible; hidden; scroll; auto;
+clip: rect(12px,auto,12px,auto) (裁切)
+字体属性：(font)
+大小 {font-size: x-large;}(特大) xx-small;(极小) 一般中文用不到，只要用数值就可以，单位：PX、PD
+样式 {font-style: oblique;}(偏斜体) italic;(斜体) normal;(正常)
+行高 {line-height: normal;}(正常) 单位：PX、PD、EM
+粗细 {font-weight: bold;}(粗体) lighter;(细体) normal;(正常)
+变体 {font-variant: small-caps;}(小型大写字母) normal;(正常)
+大小写 {text-transform: capitalize;}(首字母大写) uppercase;(大写) lowercase;(小写) none;(无)
+修饰 {text-decoration: underline;}(下划线) overline;(上划线) line-through;(删除线) blink;(闪烁)
+list-style-position 属性可以设置列表中列表项标记的位置。默认值为 outside 保持标记位于文本的左侧
+CSS 中，颜色值通常使用以下方式定义：
+
+　　　　①：十六进制，如："#ff0000"，类似这样的形式，可以缩写为："#f00"。
+
+　　　　②：RGB，如："rgb(255,0,0)"。
+
+　　　　③：颜色名称，如："red"。
+
+
+内联样式 > 内部样式 > 外部样式
+id 选择器可以为标有特定 id 的 HTML 元素指定特定的样式，id 属性和身份证一样具有唯一性。HTML元素以 id 属性来设置 id 选择器，CSS 中 id 选择器以 "#" 来定义。注意： id 属性不能以数字开头
+在 CSS 中，类选择器以一个点 "." 号来定义。可以设置所有带有指定 class 的 HTML 元素，也可以指定特定的 HTML 元素使用 class。注意：类名的第一个字符也不能使用数字。
+
+        ①：a:link - 正常，未访问过的链接。
+
+　　　　②：a:visited - 已访问过的链接。
+
+　　　　③：a:hover - 当鼠标滑动到链接上时。
+
+　　　　④：a:active - 链接被点击的那一刻。
+
+　　当为链接的不同状态设置样式时，必须遵循以下顺序规则：
+
+　　　　①：a:hover 必须跟在 a:link 和 a:visited 后面。
+
+　　　　②：a:active 必须跟在 a:hover后面。
+
+
+5/25
+
+
+
+test0@yahoo.co.jp
+
+5/26
+在获取节点的子节点时，不使用 childNodes 属性，而使用 children 属性，就可以避免这一问题，因为通过 childNodes 属性返回的是子节点集合，不仅包括元素节点，而且还包括文本节点，
+浏览器会将标签之间的空白默认为文本节点，而使用 children 属性，则只返回元素节点，不包括文本节点，还不包括注释节点。
+
+
+&[ページ番号]/&[総ページ数]
+
+
